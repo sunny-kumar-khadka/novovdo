@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Novovdo — AI-Powered Advertising Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a0a0f;
+    --ink-2: #1c1c28;
+    --ink-3: #3a3a52;
+    --muted: #7a7a94;
+    --surface: #f5f4f8;
+    --white: #ffffff;
+    --accent: #ff3d2e;
+    --accent-2: #ff7a2e;
+    --accent-glow: rgba(255, 61, 46, 0.12);
+    --gold: #e8a020;
+    --border: rgba(10,10,15,0.10);
+    --border-strong: rgba(10,10,15,0.18);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw;
+    height: 68px;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.875rem; font-weight: 500;
+    color: var(--ink-3); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .btn-ghost {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem; font-weight: 500;
+    color: var(--ink); text-decoration: none;
+    padding: 0.5rem 1.25rem;
+    border: 1.5px solid var(--border-strong);
+    border-radius: 100px;
+    transition: all 0.2s;
+  }
+  .btn-ghost:hover { background: var(--surface); }
+  .btn-primary {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem; font-weight: 500;
+    color: #fff; text-decoration: none;
+    padding: 0.5rem 1.4rem;
+    background: var(--accent);
+    border: none; border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #e02a1c; transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 120px 5vw 80px;
+    position: relative;
+    overflow: hidden;
+    background: var(--white);
+  }
+  .hero-grid-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 40%, transparent 100%);
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--accent-glow);
+    border: 1px solid rgba(255,61,46,0.25);
+    border-radius: 100px;
+    padding: 0.35rem 1rem;
+    font-size: 0.8rem; font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    position: relative; z-index: 1;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-badge-dot {
+    width: 6px; height: 6px; background: var(--accent);
+    border-radius: 50%; animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.5)} }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    max-width: 14ch;
+    position: relative; z-index: 1;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--accent);
+    position: relative;
+  }
+  h1 em::after {
+    content: '';
+    position: absolute; left: 0; right: 0; bottom: 4px; height: 4px;
+    background: var(--accent);
+    border-radius: 4px;
+    opacity: 0.3;
+  }
+
+  .hero-sub {
+    font-size: 1.15rem; font-weight: 300; color: var(--muted);
+    max-width: 52ch; margin: 2rem auto 0;
+    line-height: 1.7;
+    position: relative; z-index: 1;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+  .hero-actions {
+    display: flex; gap: 1rem; align-items: center; justify-content: center;
+    margin-top: 2.5rem;
+    position: relative; z-index: 1;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .btn-primary-lg {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 500;
+    color: #fff; text-decoration: none;
+    padding: 0.85rem 2rem;
+    background: var(--ink);
+    border-radius: 100px;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-primary-lg:hover { background: var(--accent); transform: translateY(-2px); }
+  .btn-outline-lg {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 400;
+    color: var(--ink); text-decoration: none;
+    padding: 0.85rem 2rem;
+    border: 1.5px solid var(--border-strong);
+    border-radius: 100px;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-outline-lg:hover { background: var(--surface); }
+
+  /* Hero Stats ticker */
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 5rem;
+    position: relative; z-index: 1;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .stat-item { text-align: center; }
+  .stat-number {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem; font-weight: 800; letter-spacing: -0.04em;
+    color: var(--ink);
+  }
+  .stat-number span { color: var(--accent); }
+  .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
+  .stat-divider { width: 1px; background: var(--border-strong); align-self: stretch; }
+
+  /* Scroll marquee */
+  .marquee-section {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    padding: 1rem 0;
+    overflow: hidden;
+  }
+  .marquee-track {
+    display: flex; gap: 3rem;
+    animation: marquee 25s linear infinite;
+    width: max-content;
+  }
+  .marquee-item {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .marquee-dot { width: 5px; height: 5px; background: var(--accent); border-radius: 50%; }
+  @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  /* ── SECTIONS ── */
+  section { padding: 7rem 5vw; }
+
+  .section-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: block;
+  }
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+  h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+
+  /* ── ABOUT / INTRO ── */
+  .intro-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .intro-visual {
+    position: relative;
+    height: 480px;
+  }
+  .intro-card {
+    position: absolute;
+    background: var(--white);
+    border: 1px solid var(--border-strong);
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  }
+  .card-main {
+    width: 340px; height: 240px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .card-float-1 {
+    width: 180px;
+    top: 10%; left: -5%;
+    transform: rotate(-6deg);
+    animation: float1 5s ease-in-out infinite;
+  }
+  .card-float-2 {
+    width: 160px;
+    bottom: 10%; right: -5%;
+    transform: rotate(4deg);
+    animation: float2 6s ease-in-out infinite;
+  }
+  @keyframes float1 { 0%,100%{transform:rotate(-6deg) translateY(0)} 50%{transform:rotate(-6deg) translateY(-10px)} }
+  @keyframes float2 { 0%,100%{transform:rotate(4deg) translateY(0)} 50%{transform:rotate(4deg) translateY(-8px)} }
+
+  .card-tag {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .card-metric-row {
+    display: flex; align-items: baseline; gap: 0.5rem;
+  }
+  .card-big-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 3rem; font-weight: 800; letter-spacing: -0.04em;
+    color: var(--ink);
+  }
+  .card-big-unit {
+    font-size: 1rem; font-weight: 500; color: var(--muted);
+  }
+  .card-pill {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    background: rgba(0,180,100,0.1);
+    color: #0a8050;
+    font-size: 0.78rem; font-weight: 600;
+    padding: 0.25rem 0.6rem; border-radius: 100px;
+  }
+  .card-pill-red {
+    background: var(--accent-glow);
+    color: var(--accent);
+  }
+  .mini-chart {
+    display: flex; align-items: flex-end; gap: 3px; height: 50px;
+  }
+  .mini-bar {
+    flex: 1; background: var(--surface);
+    border-radius: 3px 3px 0 0;
+    transition: height 0.3s;
+  }
+  .mini-bar.hot { background: var(--accent); }
+  .mini-bar.warm { background: var(--accent-2); }
+
+  .intro-text p {
+    font-size: 1rem; color: var(--muted);
+    line-height: 1.8; margin-top: 1.5rem;
+  }
+  .intro-text .big-p {
+    font-size: 1.15rem; font-weight: 300; color: var(--ink-3);
+    line-height: 1.7; margin-top: 1.25rem;
+  }
+  .intro-perks {
+    margin-top: 2rem;
+    display: flex; flex-direction: column; gap: 0.75rem;
+  }
+  .perk {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+  }
+  .perk-icon {
+    width: 28px; height: 28px; border-radius: 8px;
+    background: var(--accent-glow);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .perk-icon svg { width: 14px; height: 14px; fill: var(--accent); }
+  .perk-text { font-size: 0.9rem; color: var(--ink-3); }
+
+  /* ── PRODUCTS ── */
+  .products-section { background: var(--ink); }
+  .products-section .section-label { color: var(--accent); }
+  .products-section h2 { color: var(--white); }
+  .products-lead { font-size: 1rem; color: rgba(255,255,255,0.5); margin-top: 1rem; max-width: 55ch; }
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    margin-top: 4rem;
+    background: rgba(255,255,255,0.08);
+    border: 1.5px solid rgba(255,255,255,0.08);
+    border-radius: 24px;
+    overflow: hidden;
+  }
+  .product-card {
+    padding: 2.5rem;
+    background: var(--ink-2);
+    transition: background 0.25s;
+    cursor: default;
+  }
+  .product-card:hover { background: #252535; }
+  .product-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  .product-icon svg { width: 24px; height: 24px; }
+  .product-card h3 {
+    color: var(--white);
+    font-size: 1.1rem; margin-bottom: 0.75rem;
+  }
+  .product-card p {
+    font-size: 0.875rem; color: rgba(255,255,255,0.45);
+    line-height: 1.7;
+  }
+  .product-tag {
+    display: inline-block;
+    margin-top: 1.25rem;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid rgba(255,61,46,0.3);
+    border-radius: 100px;
+    padding: 0.25rem 0.75rem;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .hiw-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 6rem; align-items: center;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .steps { margin-top: 3rem; }
+  .step {
+    display: flex; gap: 1.5rem;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem; font-weight: 800;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    min-width: 36px; padding-top: 0.2rem;
+  }
+  .step h3 { font-size: 1rem; margin-bottom: 0.4rem; }
+  .step p { font-size: 0.875rem; color: var(--muted); line-height: 1.7; }
+
+  .hiw-visual {
+    position: relative; height: 500px;
+  }
+  .flow-box {
+    position: absolute;
+    background: var(--white);
+    border: 1px solid var(--border-strong);
+    border-radius: 16px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+  }
+  .flow-top { top: 0; left: 50%; transform: translateX(-50%); width: 260px; text-align: center; }
+  .flow-mid-l { top: 40%; left: 0; width: 180px; }
+  .flow-mid-r { top: 40%; right: 0; width: 180px; }
+  .flow-bot { bottom: 0; left: 50%; transform: translateX(-50%); width: 260px; }
+  .flow-box-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); font-weight: 600; margin-bottom: 0.5rem; }
+  .flow-box-main { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--ink); }
+  .flow-accent { border-color: var(--accent); background: var(--accent-glow); }
+  .flow-accent .flow-box-main { color: var(--accent); }
+  .flow-connector {
+    position: absolute; background: var(--border-strong);
+    border-radius: 2px;
+  }
+  .fc-v { width: 1px; }
+  .fc-v-1 { height: 80px; left: 50%; top: 110px; transform: translateX(-50%); }
+  .fc-v-2 { height: 80px; left: 50%; bottom: 90px; transform: translateX(-50%); }
+  .fc-h-l { height: 1px; width: 100px; top: 50%; left: 180px; transform: translateY(-50%); }
+  .fc-h-r { height: 1px; width: 100px; top: 50%; right: 180px; transform: translateY(-50%); }
+
+  /* ── RESULTS / METRICS ── */
+  .metrics-section { background: var(--surface); }
+  .metrics-inner { max-width: 1200px; margin: 0 auto; }
+  .metrics-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem; margin-top: 3.5rem;
+  }
+  .metric-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem 1.75rem;
+  }
+  .metric-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 3rem; font-weight: 800; letter-spacing: -0.05em;
+    color: var(--ink); line-height: 1;
+  }
+  .metric-num em { color: var(--accent); font-style: normal; }
+  .metric-desc { font-size: 0.875rem; color: var(--muted); margin-top: 0.75rem; line-height: 1.6; }
+  .metric-bar {
+    margin-top: 1.25rem; height: 4px; background: var(--surface);
+    border-radius: 4px; overflow: hidden;
+  }
+  .metric-fill { height: 100%; background: var(--accent); border-radius: 4px; }
+
+  /* ── SOLUTIONS ── */
+  .solutions-wrap { max-width: 1200px; margin: 0 auto; }
+  .solutions-tabs {
+    display: flex; gap: 0.5rem;
+    margin-top: 3rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0;
+  }
+  .tab-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem; font-weight: 500;
+    color: var(--muted);
+    background: none; border: none;
+    padding: 0.75rem 1.25rem;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: all 0.2s;
+  }
+  .tab-btn.active { color: var(--ink); border-bottom-color: var(--accent); }
+  .tab-btn:hover { color: var(--ink); }
+  .solutions-panels { margin-top: 2.5rem; }
+  .sol-panel {
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: start;
+  }
+  .sol-panel.active { display: grid; }
+  .sol-panel h3 { font-size: 1.6rem; margin-bottom: 1rem; }
+  .sol-panel p { font-size: 0.9rem; color: var(--muted); line-height: 1.8; }
+  .sol-features {
+    margin-top: 1.5rem;
+    display: flex; flex-direction: column; gap: 0.75rem;
+  }
+  .sol-feat {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-size: 0.875rem; color: var(--ink-3);
+  }
+  .sol-feat::before {
+    content: '';
+    width: 20px; height: 20px;
+    background: var(--accent-glow);
+    border-radius: 50%;
+    flex-shrink: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23ff3d2e'%3E%3Cpath d='M16.7 5.3a1 1 0 00-1.4 0L8 12.6 4.7 9.3a1 1 0 00-1.4 1.4l4 4a1 1 0 001.4 0l8-8a1 1 0 000-1.4z'/%3E%3C/svg%3E");
+    background-size: 12px; background-position: center; background-repeat: no-repeat;
+  }
+  .sol-visual {
+    background: var(--surface);
+    border-radius: 20px;
+    height: 320px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .sol-visual-inner {
+    font-family: 'Syne', sans-serif;
+    font-size: 5rem; font-weight: 800;
+    opacity: 0.07; letter-spacing: -0.05em; color: var(--ink);
+    pointer-events: none;
+  }
+  .sol-floating-cards {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 0.75rem;
+    padding: 2rem;
+  }
+  .sol-card-chip {
+    background: var(--white);
+    border: 1px solid var(--border-strong);
+    border-radius: 12px;
+    padding: 0.75rem 1.25rem;
+    width: 100%;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 0.875rem;
+  }
+  .sol-chip-label { color: var(--ink-3); font-weight: 500; }
+  .sol-chip-value { color: var(--accent); font-weight: 700; font-family: 'Syne', sans-serif; }
+
+  /* ── WHY INDIA ── */
+  .india-section { background: var(--ink); position: relative; overflow: hidden; }
+  .india-glow {
+    position: absolute; width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(255,61,46,0.15) 0%, transparent 70%);
+    top: -200px; right: -100px;
+    pointer-events: none;
+  }
+  .india-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+  .india-section .section-label { color: var(--accent); }
+  .india-section h2 { color: var(--white); }
+  .india-tagline {
+    font-size: 1rem; color: rgba(255,255,255,0.45); margin-top: 1rem; max-width: 55ch;
+  }
+  .india-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 3.5rem;
+  }
+  .india-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .india-card:hover {
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(255,61,46,0.3);
+  }
+  .india-card-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.8rem; font-weight: 800; letter-spacing: -0.05em;
+    color: var(--white); line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .india-card-num span { color: var(--accent); }
+  .india-card p { font-size: 0.875rem; color: rgba(255,255,255,0.4); line-height: 1.7; }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--accent);
+    text-align: center; padding: 6rem 5vw;
+  }
+  .cta-section h2 {
+    color: var(--white);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+  }
+  .cta-section p { color: rgba(255,255,255,0.75); font-size: 1.05rem; margin-top: 1rem; }
+  .cta-actions {
+    display: flex; gap: 1rem; justify-content: center; margin-top: 2.5rem;
+  }
+  .btn-white {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 600;
+    color: var(--accent); text-decoration: none;
+    padding: 0.9rem 2.25rem;
+    background: var(--white); border-radius: 100px;
+    transition: all 0.2s;
+  }
+  .btn-white:hover { transform: translateY(-2px); }
+  .btn-white-outline {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 500;
+    color: var(--white); text-decoration: none;
+    padding: 0.9rem 2.25rem;
+    border: 2px solid rgba(255,255,255,0.5); border-radius: 100px;
+    transition: all 0.2s;
+  }
+  .btn-white-outline:hover { border-color: var(--white); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    padding: 4rem 5vw 2rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem; margin-bottom: 4rem;
+  }
+  .footer-logo {
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem;
+    letter-spacing: -0.03em; color: var(--white); text-decoration: none;
+  }
+  .footer-logo span { color: var(--accent); }
+  .footer-desc { font-size: 0.875rem; color: rgba(255,255,255,0.35); margin-top: 1rem; line-height: 1.7; max-width: 30ch; }
+  .footer-col h4 {
+    font-family: 'Syne', sans-serif; font-size: 0.8rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5); margin-bottom: 1.25rem;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+  .footer-col ul a {
+    font-size: 0.875rem; color: rgba(255,255,255,0.35); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-col ul a:hover { color: var(--white); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.2); }
+  .india-tag {
+    font-size: 0.8rem; color: rgba(255,255,255,0.3);
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .india-flag { font-size: 1rem; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s, transform 0.6s; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .intro-section, .hiw-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .intro-visual, .hiw-visual { height: 300px; }
+    .products-grid { grid-template-columns: 1fr; }
+    .metrics-grid { grid-template-columns: 1fr 1fr; }
+    .india-grid { grid-template-columns: 1fr 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .nav-links { display: none; }
+    .hero-stats { gap: 1.5rem; }
+    .sol-panel.active { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Novo<span>vdo</span></a>
+  <ul class="nav-links">
+    <li><a href="#products">Products</a></li>
+    <li><a href="#solutions">Solutions</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="#" class="btn-ghost">Log in</a>
+    <a href="#contact" class="btn-primary">Get started</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-badge"><div class="hero-badge-dot"></div>#1 AI AdTech Platform in India</div>
+  <h1>Ads that <em>perform</em>,<br>not just appear.</h1>
+  <p class="hero-sub">Novovdo uses deep learning to deliver advertising that outperforms — reaching the right audience, at the right moment, on every screen across India and beyond.</p>
+  <div class="hero-actions">
+    <a href="#contact" class="btn-primary-lg">Start a campaign</a>
+    <a href="#products" class="btn-outline-lg">See how it works →</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-number">3.2<span>×</span></div>
+      <div class="stat-label">Average ROAS lift</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-number">800<span>M+</span></div>
+      <div class="stat-label">Addressable users</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-number">42<span>%</span></div>
+      <div class="stat-label">Lower cost per acquisition</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-number">12<span>ms</span></div>
+      <div class="stat-label">Bid decisioning speed</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track" id="marquee">
+    <div class="marquee-item"><div class="marquee-dot"></div>Programmatic Advertising</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>AI-Powered Targeting</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Real-Time Bidding</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>CTV & OTT</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Mobile In-App</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Dynamic Creative</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Cross-Channel Analytics</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Brand Safety</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Contextual Intelligence</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Programmatic Advertising</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>AI-Powered Targeting</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Real-Time Bidding</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>CTV & OTT</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Mobile In-App</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Dynamic Creative</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Cross-Channel Analytics</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Brand Safety</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Contextual Intelligence</div>
+  </div>
+</div>
+
+<!-- ABOUT/INTRO -->
+<section id="about">
+  <div class="intro-section">
+    <div class="intro-visual">
+      <div class="intro-card card-float-1">
+        <div class="card-tag">Brand Lift</div>
+        <div class="card-metric-row" style="margin-top:0.5rem">
+          <div class="card-big-num" style="font-size:2rem">+68</div>
+          <div class="card-big-unit">%</div>
+        </div>
+        <div class="card-pill" style="margin-top:0.4rem;font-size:0.72rem">↑ vs benchmark</div>
+      </div>
+      <div class="intro-card card-main">
+        <div>
+          <div class="card-tag">Campaign Intelligence</div>
+          <div class="card-metric-row" style="margin-top:0.75rem">
+            <div class="card-big-num">94</div>
+            <div class="card-big-unit">/ 100</div>
+          </div>
+          <div style="display:flex;gap:0.5rem;margin-top:0.5rem">
+            <div class="card-pill">✓ On Target</div>
+            <div class="card-pill card-pill-red">⚡ Live</div>
+          </div>
+        </div>
+        <div class="mini-chart">
+          <div class="mini-bar" style="height:30%"></div>
+          <div class="mini-bar" style="height:55%"></div>
+          <div class="mini-bar warm" style="height:45%"></div>
+          <div class="mini-bar" style="height:70%"></div>
+          <div class="mini-bar hot" style="height:85%"></div>
+          <div class="mini-bar hot" style="height:95%"></div>
+          <div class="mini-bar warm" style="height:80%"></div>
+          <div class="mini-bar" style="height:60%"></div>
+          <div class="mini-bar hot" style="height:100%"></div>
+          <div class="mini-bar" style="height:75%"></div>
+        </div>
+      </div>
+      <div class="intro-card card-float-2">
+        <div class="card-tag">CPA saved</div>
+        <div class="card-metric-row" style="margin-top:0.5rem">
+          <div class="card-big-unit" style="font-size:1.1rem">₹</div>
+          <div class="card-big-num" style="font-size:1.8rem">12.4</div>
+          <div class="card-big-unit">cr</div>
+        </div>
+        <div style="font-size:0.72rem;color:var(--muted);margin-top:0.3rem">This quarter</div>
+      </div>
+    </div>
+    <div class="intro-text reveal">
+      <span class="section-label">Our mission</span>
+      <h2>Intelligence that<br>closes the gap.</h2>
+      <p class="big-p">India's digital advertising market is booming — but most ad spend still underperforms. Novovdo was built to fix this: an AI-first platform that learns from every impression and optimises every rupee.</p>
+      <p>We combine first-party data signals, real-time auction intelligence, and generative creative technology to give brands and agencies a decisive competitive edge across every digital channel.</p>
+      <div class="intro-perks">
+        <div class="perk">
+          <div class="perk-icon"><svg viewBox="0 0 16 16"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm3.7 5.3l-4 4a1 1 0 01-1.4 0l-2-2a1 1 0 011.4-1.4L7 8.6l3.3-3.3a1 1 0 011.4 1.4z"/></svg></div>
+          <div class="perk-text">Real-time optimisation across 10+ channel types simultaneously</div>
+        </div>
+        <div class="perk">
+          <div class="perk-icon"><svg viewBox="0 0 16 16"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm3.7 5.3l-4 4a1 1 0 01-1.4 0l-2-2a1 1 0 011.4-1.4L7 8.6l3.3-3.3a1 1 0 011.4 1.4z"/></svg></div>
+          <div class="perk-text">Proprietary audience graph built on 800M+ Indian digital profiles</div>
+        </div>
+        <div class="perk">
+          <div class="perk-icon"><svg viewBox="0 0 16 16"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm3.7 5.3l-4 4a1 1 0 01-1.4 0l-2-2a1 1 0 011.4-1.4L7 8.6l3.3-3.3a1 1 0 011.4 1.4z"/></svg></div>
+          <div class="perk-text">Fully DPDP-compliant with enterprise-grade data security</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products-section" id="products">
+  <span class="section-label">What we build</span>
+  <h2>The Novovdo platform.</h2>
+  <p class="products-lead">Three interconnected products. One intelligence layer. Infinite outcomes.</p>
+  <div class="products-grid reveal">
+    <div class="product-card">
+      <div class="product-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#ff3d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+        </svg>
+      </div>
+      <h3>NovoBid</h3>
+      <p>AI-driven real-time bidding engine that analyses auction signals in 12ms — winning high-value impressions while maintaining strict budget discipline.</p>
+      <span class="product-tag">Real-Time Bidding</span>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#ff3d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+        </svg>
+      </div>
+      <h3>NovoAudience</h3>
+      <p>Proprietary audience graph layered with behavioural, contextual, and intent signals — enabling hyper-personalised targeting at scale across every screen.</p>
+      <span class="product-tag">Audience Intelligence</span>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#ff3d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+        </svg>
+      </div>
+      <h3>NovoCreate</h3>
+      <p>Generative AI creative studio that produces, tests, and dynamically swaps ad creatives based on live performance signals — at a fraction of traditional production costs.</p>
+      <span class="product-tag">Gen AI Creative</span>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#ff7a2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+      </div>
+      <h3>NovoAnalytics</h3>
+      <p>Unified measurement dashboard with attribution modelling across online and offline touchpoints — so you know exactly what's driving results and what isn't.</p>
+      <span class="product-tag" style="border-color:rgba(255,122,46,0.3);color:var(--accent-2)">Analytics</span>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#ff7a2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+        </svg>
+      </div>
+      <h3>NovoCTV</h3>
+      <p>Connected TV and OTT advertising suite designed for India's streaming boom — reaching cord-cutters on Disney+Hotstar, JioCinema, SonyLIV, and more.</p>
+      <span class="product-tag" style="border-color:rgba(255,122,46,0.3);color:var(--accent-2)">CTV & OTT</span>
+    </div>
+    <div class="product-card" style="background:rgba(255,61,46,0.06);border:1px solid rgba(255,61,46,0.15);">
+      <div class="product-icon" style="background:rgba(255,61,46,0.1)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#ff3d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+      <h3 style="color:#fff">NovoAPI</h3>
+      <p style="color:rgba(255,255,255,0.5)">Open API layer for enterprises and agencies to integrate Novovdo's intelligence directly into their own platforms and workflows.</p>
+      <span class="product-tag">Developer Platform</span>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section>
+  <div class="hiw-grid">
+    <div class="reveal">
+      <span class="section-label">How it works</span>
+      <h2>Precision at every<br>millisecond.</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div>
+            <h3>Signal ingestion</h3>
+            <p>We ingest thousands of real-time contextual, behavioural, and device signals the moment a bid request arrives.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div>
+            <h3>Audience matching</h3>
+            <p>Our NovoAudience graph instantly identifies the user's intent cluster and predicts conversion likelihood for your specific goal.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div>
+            <h3>Intelligent bid pricing</h3>
+            <p>NovoBid calculates the optimal CPM based on predicted value — bidding to win profitably, not just to win.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div>
+            <h3>Dynamic creative delivery</h3>
+            <p>NovoCreate selects or generates the highest-performing creative variant for that specific user in real time.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">05</div>
+          <div>
+            <h3>Continuous learning</h3>
+            <p>Every impression feeds back into the model — the system gets smarter with every single ad served.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hiw-visual reveal" style="transition-delay:0.15s">
+      <div class="flow-connector fc-v fc-v-1"></div>
+      <div class="flow-connector fc-v fc-v-2"></div>
+      <div class="flow-connector fc-h-l"></div>
+      <div class="flow-connector fc-h-r"></div>
+      <div class="flow-box flow-top">
+        <div class="flow-box-label">Input</div>
+        <div class="flow-box-main">Bid Request Arrives</div>
+      </div>
+      <div class="flow-box flow-mid-l">
+        <div class="flow-box-label">Module</div>
+        <div class="flow-box-main">Audience<br>Graph</div>
+      </div>
+      <div class="flow-box flow-mid-r">
+        <div class="flow-box-label">Module</div>
+        <div class="flow-box-main">Context<br>Engine</div>
+      </div>
+      <div class="flow-box flow-accent" style="top:50%;left:50%;transform:translate(-50%,-50%);width:200px;text-align:center;z-index:2">
+        <div class="flow-box-label">Core AI</div>
+        <div class="flow-box-main">NovoBrain™</div>
+      </div>
+      <div class="flow-box flow-bot">
+        <div class="flow-box-label">Output</div>
+        <div class="flow-box-main">Win. Deliver. Learn.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS / METRICS -->
+<section class="metrics-section" id="results">
+  <div class="metrics-inner">
+    <span class="section-label">Proven results</span>
+    <h2>Numbers that matter<br>to your business.</h2>
+    <div class="metrics-grid reveal">
+      <div class="metric-card">
+        <div class="metric-num">3.2<em>×</em></div>
+        <div class="metric-desc">Average return on ad spend lift compared to industry benchmarks across all campaign types.</div>
+        <div class="metric-bar"><div class="metric-fill" style="width:80%"></div></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">42<em>%</em></div>
+        <div class="metric-desc">Reduction in cost per acquisition versus the client's previous technology partner on average.</div>
+        <div class="metric-bar"><div class="metric-fill" style="width:42%"></div></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">98<em>%</em></div>
+        <div class="metric-desc">Brand safety score across all campaigns — no harmful adjacency, no wasted impressions.</div>
+        <div class="metric-bar"><div class="metric-fill" style="width:98%"></div></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">12<em>ms</em></div>
+        <div class="metric-desc">Median bid decisioning latency — faster than any competitor platform operating in India today.</div>
+        <div class="metric-bar"><div class="metric-fill" style="width:30%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTIONS -->
+<section id="solutions">
+  <div class="solutions-wrap">
+    <span class="section-label">Industry solutions</span>
+    <h2>Built for every vertical.</h2>
+    <div class="solutions-tabs">
+      <button class="tab-btn active" onclick="switchTab(this, 'ecomm')">E-commerce</button>
+      <button class="tab-btn" onclick="switchTab(this, 'fmcg')">FMCG & CPG</button>
+      <button class="tab-btn" onclick="switchTab(this, 'finserv')">Financial Services</button>
+      <button class="tab-btn" onclick="switchTab(this, 'media')">Media & OTT</button>
+    </div>
+    <div class="solutions-panels">
+      <div class="sol-panel active" id="tab-ecomm">
+        <div>
+          <h3>Drive more sales,<br>smarter.</h3>
+          <p>India's e-commerce market is intensely competitive. Novovdo helps brands cut through the noise with performance-driven campaigns that target high-intent shoppers at every funnel stage — from awareness to cart conversion.</p>
+          <div class="sol-features">
+            <div class="sol-feat">Dynamic product ads synced to live catalogue</div>
+            <div class="sol-feat">Cart abandonment retargeting in real time</div>
+            <div class="sol-feat">Festive season surge automation (Big Billion, Great Indian)</div>
+            <div class="sol-feat">Cross-platform attribution from app to purchase</div>
+          </div>
+        </div>
+        <div class="sol-visual">
+          <div class="sol-visual-inner">₹</div>
+          <div class="sol-floating-cards">
+            <div class="sol-card-chip"><span class="sol-chip-label">Conversion rate</span><span class="sol-chip-value">+67%</span></div>
+            <div class="sol-card-chip"><span class="sol-chip-label">Cart abandonment recovery</span><span class="sol-chip-value">38%</span></div>
+            <div class="sol-card-chip"><span class="sol-chip-label">Revenue attributed (MoM)</span><span class="sol-chip-value">₹4.2cr</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="sol-panel" id="tab-fmcg">
+        <div>
+          <h3>Mass reach,<br>precise targeting.</h3>
+          <p>FMCG brands need scale and relevance simultaneously. Novovdo reaches consumers across regional languages, income tiers, and device types — while our creative engine dynamically tailors messaging for each context.</p>
+          <div class="sol-features">
+            <div class="sol-feat">Regional language creative adaptation (22 languages)</div>
+            <div class="sol-feat">Tier 2 & Tier 3 city audience reach</div>
+            <div class="sol-feat">Retail store-level geo-targeting</div>
+            <div class="sol-feat">Brand lift measurement with guaranteed uplift model</div>
+          </div>
+        </div>
+        <div class="sol-visual">
+          <div class="sol-visual-inner">🇮🇳</div>
+          <div class="sol-floating-cards">
+            <div class="sol-card-chip"><span class="sol-chip-label">Brand recall lift</span><span class="sol-chip-value">+52%</span></div>
+            <div class="sol-card-chip"><span class="sol-chip-label">Tier 2/3 reach</span><span class="sol-chip-value">320M+</span></div>
+            <div class="sol-card-chip"><span class="sol-chip-label">Languages supported</span><span class="sol-chip-value">22</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="sol-panel" id="tab-finserv">
+        <div>
+          <h3>Compliant, precise,<br>performance-driven.</h3>
+          <p>Financial services advertising in India requires navigating strict regulations while still delivering commercial results. Novovdo's compliance-first architecture ensures your campaigns meet SEBI and RBI guidelines without sacrificing performance.</p>
+          <div class="sol-features">
+            <div class="sol-feat">SEBI & RBI compliant campaign frameworks</div>
+            <div class="sol-feat">Intent-based targeting for loan, insurance, investment seekers</div>
+            <div class="sol-feat">Fraud prevention and invalid traffic filtering</div>
+            <div class="sol-feat">Lead quality scoring and CPA optimisation</div>
+          </div>
+        </div>
+        <div class="sol-visual">
+          <div class="sol-visual-inner">%</div>
+          <div class="sol-floating-cards">
+            <div class="sol-card-chip"><span class="sol-chip-label">Lead quality score</span><span class="sol-chip-value">91/100</span></div>
+            <div class="sol-card-chip"><span class="sol-chip-label">Cost per lead reduction</span><span class="sol-chip-value">-44%</span></div>
+            <div class="sol-card-chip"><span class="sol-chip-label">IVT filtered</span><span class="sol-chip-value">99.2%</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="sol-panel" id="tab-media">
+        <div>
+          <h3>Monetise. Retain.<br>Grow subscriptions.</h3>
+          <p>For India's booming OTT and media publishers, Novovdo delivers premium demand while helping platforms reduce churn through smarter subscriber acquisition campaigns.</p>
+          <div class="sol-features">
+            <div class="sol-feat">CTV pre-roll and mid-roll premium inventory</div>
+            <div class="sol-feat">Subscriber lookalike audience acquisition</div>
+            <div class="sol-feat">Churn prediction and win-back retargeting</div>
+            <div class="sol-feat">Publisher yield optimisation via header bidding</div>
+          </div>
+        </div>
+        <div class="sol-visual">
+          <div class="sol-visual-inner">▶</div>
+          <div class="sol-floating-cards">
+            <div class="sol-card-chip"><span class="sol-chip-label">Subscriber acquisition CPL</span><span class="sol-chip-value">-38%</span></div>
+            <div class="sol-card-chip"><span class="sol-chip-label">Publisher yield increase</span><span class="sol-chip-value">+29%</span></div>
+            <div class="sol-card-chip"><span class="sol-chip-label">Churn recovered (monthly)</span><span class="sol-chip-value">11K+</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY INDIA -->
+<section class="india-section">
+  <div class="india-glow"></div>
+  <div class="india-inner">
+    <span class="section-label">Our home advantage</span>
+    <h2>Built in India,<br>for India's scale.</h2>
+    <p class="india-tagline">While global platforms treat India as an afterthought, Novovdo was engineered from day one for the complexity, diversity, and velocity of the Indian market.</p>
+    <div class="india-grid reveal">
+      <div class="india-card">
+        <div class="india-card-num">800<span>M+</span></div>
+        <p>Internet users addressable through the Novovdo network — the largest proprietary audience graph built natively for India.</p>
+      </div>
+      <div class="india-card">
+        <div class="india-card-num">22<span>+</span></div>
+        <p>Indian languages supported across creative production, targeting, and reporting — ensuring true linguistic reach beyond English-first platforms.</p>
+      </div>
+      <div class="india-card">
+        <div class="india-card-num">₹<span>0</span></div>
+        <p>Data exported outside India. We are fully sovereign in our infrastructure — all data processed and stored on Indian soil.</p>
+      </div>
+      <div class="india-card">
+        <div class="india-card-num">15<span>+</span></div>
+        <p>Premium Indian media publisher and OTT direct supply partnerships — including exclusive inventory not available on global DSPs.</p>
+      </div>
+      <div class="india-card">
+        <div class="india-card-num">2<span>ms</span></div>
+        <p>Low-latency infrastructure with Points of Presence in Mumbai, Delhi, Bengaluru, and Chennai — for sub-continent native performance.</p>
+      </div>
+      <div class="india-card">
+        <div class="india-card-num">DPDP<span>✓</span></div>
+        <p>Full compliance with India's Digital Personal Data Protection Act — built in from architecture, not bolted on as an afterthought.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <h2>Ready to outperform?</h2>
+  <p>Join the brands and agencies already winning more with Novovdo.</p>
+  <div class="cta-actions">
+    <a href="mailto:hello@novovdo.com" class="btn-white">Talk to our team</a>
+    <a href="#products" class="btn-white-outline">Explore the platform</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <a href="#" class="footer-logo">Novo<span>vdo</span></a>
+      <p class="footer-desc">India's leading AI-powered advertising intelligence platform. Smarter bids. Better creative. Real results.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Platform</h4>
+      <ul>
+        <li><a href="#">NovoBid</a></li>
+        <li><a href="#">NovoAudience</a></li>
+        <li><a href="#">NovoCreate</a></li>
+        <li><a href="#">NovoCTV</a></li>
+        <li><a href="#">NovoAPI</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Solutions</h4>
+      <ul>
+        <li><a href="#">E-commerce</a></li>
+        <li><a href="#">FMCG & CPG</a></li>
+        <li><a href="#">Financial Services</a></li>
+        <li><a href="#">Media & OTT</a></li>
+        <li><a href="#">Agencies</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Novovdo Technologies Pvt. Ltd. All rights reserved.</p>
+    <div class="india-tag"><span class="india-flag">🇮🇳</span> Made in India</div>
+  </div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => io.observe(r));
+
+  // Tab switching
+  function switchTab(btn, id) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.sol-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + id).classList.add('active');
+  }
+
+  // Smooth number counter for stats
+  function animateCounter(el, target, suffix, isFloat) {
+    let start = 0;
+    const duration = 1800;
+    const step = timestamp => {
+      if (!start) start = timestamp;
+      const prog = Math.min((timestamp - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - prog, 3);
+      const val = isFloat ? (ease * target).toFixed(1) : Math.round(ease * target);
+      el.innerHTML = val + '<span>' + suffix + '</span>';
+      if (prog < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  const stats = [
+    { sel: '.stat-number:nth-child(1)', val: 3.2, suffix: '×', float: true },
+  ];
+
+  // Animate hero stats on load
+  const statNums = document.querySelectorAll('.stat-number');
+  const targets = [[3.2, '×', true], [800, 'M+', false], [42, '%', false], [12, 'ms', false]];
+  const statObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const i = [...statNums].indexOf(e.target);
+        if (targets[i]) animateCounter(e.target, targets[i][0], targets[i][1], targets[i][2]);
+        statObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  statNums.forEach(n => statObs.observe(n));
+</script>
+</body>
+</html>

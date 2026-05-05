@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;family=DM+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#bec2ff",
+                        "surface-container-highest": "#32353a",
+                        "secondary": "#e5b5ff",
+                        "on-surface-variant": "#c5c5d9",
+                        "tertiary-fixed-dim": "#00dbe9",
+                        "on-secondary-fixed": "#30004b",
+                        "inverse-on-surface": "#2e3036",
+                        "on-error": "#690005",
+                        "on-primary-container": "#dedeff",
+                        "surface-container": "#1d2025",
+                        "surface-dim": "#101418",
+                        "tertiary-fixed": "#7df4ff",
+                        "error": "#ffb4ab",
+                        "inverse-surface": "#e1e2e9",
+                        "surface-variant": "#32353a",
+                        "on-tertiary": "#00363a",
+                        "primary": "#bec2ff",
+                        "surface": "#101418",
+                        "tertiary-container": "#006f76",
+                        "tertiary": "#00dbe9",
+                        "surface-container-lowest": "#0b0e13",
+                        "surface-tint": "#bec2ff",
+                        "on-secondary-container": "#f7e1ff",
+                        "surface-bright": "#36393f",
+                        "on-surface": "#e1e2e9",
+                        "primary-container": "#3a47ff",
+                        "secondary-fixed": "#f4d9ff",
+                        "on-secondary-fixed-variant": "#7000a8",
+                        "on-primary-fixed-variant": "#0716e5",
+                        "on-tertiary-fixed-variant": "#004f54",
+                        "outline": "#8f8fa3",
+                        "on-background": "#e1e2e9",
+                        "surface-container-low": "#191c21",
+                        "on-tertiary-fixed": "#002022",
+                        "secondary-container": "#a100f0",
+                        "inverse-primary": "#3340fa",
+                        "on-secondary": "#4e0078",
+                        "secondary-fixed-dim": "#e5b5ff",
+                        "on-primary-fixed": "#00036b",
+                        "on-primary": "#0008a8",
+                        "background": "#101418",
+                        "surface-container-high": "#272a2f",
+                        "primary-fixed": "#e0e0ff",
+                        "on-tertiary-container": "#75f4ff",
+                        "error-container": "#93000a",
+                        "outline-variant": "#454556",
+                        "on-error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "1.5rem",
+                        "3xl": "4rem",
+                        "2xl": "3rem",
+                        "sm": "0.5rem",
+                        "xl": "2rem",
+                        "margin": "2rem",
+                        "gutter": "1.5rem",
+                        "xs": "0.25rem",
+                        "md": "1rem"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Space Grotesk"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Space Grotesk"],
+                        "body-lg": ["Inter"],
+                        "mono-label": ["DM Mono"],
+                        "body-md": ["Inter"],
+                        "headline-xl": ["Space Grotesk"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "label-md": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                        "mono-label": ["13px", {"lineHeight": "1", "letterSpacing": "0", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                        "headline-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "0.02em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(20, 23, 28, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glowing-input:focus {
+            outline: none;
+            border-bottom: 1px solid #bec2ff;
+            box-shadow: 0 4px 12px -2px rgba(190, 194, 255, 0.2);
+        }
+        .neon-glow {
+            box-shadow: 0 0 15px rgba(190, 194, 255, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary/30">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-slate-950/80 backdrop-blur-md border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+<div class="flex justify-between items-center h-20 px-8 max-w-[1600px] mx-auto">
+<div class="flex items-center gap-8">
+<a class="text-2xl font-bold text-white tracking-tighter font-headline-md bg-transparent" href="index.html"><img alt="novovdo logo" class="h-8 w-auto object-contain bg-transparent" src="asset/images/novovdo_logo.svg"/></a>
+<div class="hidden md:flex gap-6 font-headline-md tracking-tight">
+<a class="text-slate-400 hover:text-white transition-colors" href="index.html">Home</a>
+<a class="text-slate-400 hover:text-white transition-colors" href="solutions.html">Solutions</a>
+<a class="text-slate-400 hover:text-white transition-colors" href="advertiser.html">Advertisers</a>
+<a class="text-slate-400 hover:text-white transition-colors" href="publisher.html">Publishers</a>
+<a class="text-blue-500 border-b-2 border-blue-500 pb-1" href="index.html#case-studies">Case Studies</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-6 py-2 text-slate-400 hover:text-white transition-all duration-300 font-label-md">Login</button>
+<button class="px-6 py-2 bg-primary-container text-on-primary-container rounded-md active:scale-95 duration-200 font-label-md">Get Started</button>
+</div>
+</div>
+</header>
+<main class="pt-32 pb-24 px-8 max-w-[1600px] mx-auto">
+<!-- Hero Section -->
+<section class="mb-24">
+<div class="grid grid-cols-1 gap-16 items-end lg:grid-cols-1">
+<div class="space-y-6 text-center mx-auto">
+<span class="font-mono-label text-primary uppercase tracking-[0.2em]">Connect with us</span>
+<h1 class="font-headline-xl text-on-background mx-auto">
+                        Let's Engineer Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-tertiary">AdTech Future.</span>
+</h1>
+<p class="font-body-lg text-on-surface-variant mx-auto">
+                        Our experts are ready to help you navigate the complexities of AI-driven programmatic advertising and real-time intelligence.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Bento Grid Contact Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Contact Form Card -->
+<div class="md:col-span-7 glass-card p-xl rounded-xl">
+<h2 class="font-headline-md mb-xl">Send a Message</h2>
+<form class="space-y-8">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-xl">
+<div class="group">
+<label class="font-label-md text-on-surface-variant block mb-2 transition-colors group-focus-within:text-primary">Full Name</label>
+<input class="w-full bg-surface-container-lowest border-0 border-b border-outline-variant py-3 px-0 glowing-input font-body-md text-on-surface placeholder:text-surface-variant" placeholder="John Doe" type="text"/>
+</div>
+<div class="group">
+<label class="font-label-md text-on-surface-variant block mb-2 transition-colors group-focus-within:text-primary">Work Email</label>
+<input class="w-full bg-surface-container-lowest border-0 border-b border-outline-variant py-3 px-0 glowing-input font-body-md text-on-surface placeholder:text-surface-variant" placeholder="john@company.com" type="email"/>
+</div>
+</div>
+<div class="group">
+<label class="font-label-md text-on-surface-variant block mb-2 transition-colors group-focus-within:text-primary">Subject</label>
+<select class="w-full bg-surface-container-lowest border-0 border-b border-outline-variant py-3 px-0 glowing-input font-body-md text-on-surface appearance-none">
+<option>Platform Inquiry</option>
+<option>Partnership Proposal</option>
+<option>Technical Support</option>
+<option>Media &amp; Press</option>
+</select>
+</div>
+<div class="group">
+<label class="font-label-md text-on-surface-variant block mb-2 transition-colors group-focus-within:text-primary">Message</label>
+<textarea class="w-full bg-surface-container-lowest border-0 border-b border-outline-variant py-3 px-0 glowing-input font-body-md text-on-surface placeholder:text-surface-variant resize-none" placeholder="How can we help you scale?" rows="4"></textarea>
+</div>
+<div class="pt-4">
+<button class="bg-primary-container text-on-primary-container font-headline-md py-4 px-12 rounded-lg flex items-center gap-3 hover:shadow-[0_0_30px_rgba(58,71,255,0.4)] transition-all active:scale-95 group">
+                            Transmit Message
+                            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="send">send</span>
+</button>
+</div>
+</form>
+</div>
+<!-- Global Offices -->
+<div class="md:col-span-5 space-y-gutter">
+<div class="glass-card p-xl rounded-xl h-full flex flex-col">
+<h2 class="font-headline-md mb-xl flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="public">public</span>
+                        Global Nodes
+                    </h2>
+<div class="space-y-8 flex-grow">
+<div class="flex items-start gap-4">
+<div class="mt-1 w-2 h-2 rounded-full bg-primary neon-glow"></div>
+<div>
+<h3 class="font-headline-md text-body-lg mb-1">San Francisco</h3>
+<p class="text-on-surface-variant font-body-sm">Tech HQ — Market Street 101<br/>CA 94103, USA</p>
+<a class="text-primary font-label-md uppercase tracking-wider mt-2 block hover:underline" href="#">View Map</a>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="mt-1 w-2 h-2 rounded-full bg-tertiary neon-glow"></div>
+<div>
+<h3 class="font-headline-md text-body-lg mb-1">London</h3>
+<p class="text-on-surface-variant font-body-sm">EU Operations — Silicon Roundabout<br/>Shoreditch, EC1V 2NX, UK</p>
+<a class="text-primary font-label-md uppercase tracking-wider mt-2 block hover:underline" href="#">View Map</a>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="mt-1 w-2 h-2 rounded-full bg-secondary neon-glow"></div>
+<div>
+<h3 class="font-headline-md text-body-lg mb-1">Singapore</h3>
+<p class="text-on-surface-variant font-body-sm">APAC Center — Marina Bay Sands<br/>Singapore 018956</p>
+<a class="text-primary font-label-md uppercase tracking-wider mt-2 block hover:underline" href="#">View Map</a>
+</div>
+</div>
+</div>
+<!-- Quick Connect Box -->
+<div class="mt-xl p-md bg-surface-container-high rounded-lg border border-outline-variant/30">
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-tertiary" data-icon="hub">hub</span>
+<span class="font-label-md text-on-surface uppercase tracking-widest">Rapid Response</span>
+</div>
+<p class="font-body-sm text-on-surface-variant">General: contact@novovdo.ai</p>
+<p class="font-body-sm text-on-surface-variant">Client Support: support@novovdo.ai</p>
+</div>
+</div>
+</div>
+</div>
+<!-- CTA Section -->
+<section class="mt-3xl">
+<div class="relative overflow-hidden glass-card rounded-2xl p-3xl text-center border-primary/20">
+<!-- Background Decorative Glow -->
+<div class="absolute -top-24 -left-24 w-64 h-64 bg-primary/20 blur-[100px] rounded-full"></div>
+<div class="absolute -bottom-24 -right-24 w-64 h-64 bg-tertiary/20 blur-[100px] rounded-full"></div>
+<div class="relative z-10">
+<h2 class="font-headline-xl mb-md">Ready to scale?</h2>
+<p class="font-body-lg text-on-surface-variant mb-xl max-w-2xl mx-auto">
+                        Join 200+ global brands leveraging illuminated intelligence to dominate the digital landscape.
+                    </p>
+<button class="bg-white text-slate-950 font-headline-md py-4 px-16 rounded-full hover:bg-primary-fixed-dim transition-all duration-300 transform hover:scale-105">
+                        Start Your AI Journey
+                    </button>
+<div class="mt-8 flex justify-center gap-8">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="check_circle" data-weight="fill">check_circle</span>
+<span class="font-label-md text-on-surface-variant">Free Architecture Review</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="check_circle" data-weight="fill">check_circle</span>
+<span class="font-label-md text-on-surface-variant">24/7 Priority Support</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-950 w-full py-12 border-t border-white/5">
+<div class="max-w-[1600px] mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-4">
+<img alt="novovdo logo" class="h-7 w-auto object-contain" src="asset/images/novovdo_logo.svg"/>
+<p class="text-slate-500 font-['Space_Grotesk'] text-sm">© 2026 novovdo. Illuminated Intelligence for AdTech.</p>
+<div class="flex space-x-6 pt-4">
+<a class="text-slate-500 hover:text-blue-400 transition-colors font-['Space_Grotesk'] text-sm" href="#">LinkedIn</a>
+<a class="text-slate-500 hover:text-blue-400 transition-colors font-['Space_Grotesk'] text-sm" href="#">Twitter</a>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col space-y-3">
+<a class="text-slate-500 hover:text-blue-400 transition-colors font-['Space_Grotesk'] text-sm" href="solutions.html">Resources</a>
+<a class="text-slate-500 hover:text-blue-400 transition-colors font-['Space_Grotesk'] text-sm" href="#">Privacy Policy</a>
+<a class="text-slate-500 hover:text-blue-400 transition-colors font-['Space_Grotesk'] text-sm" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col space-y-3">
+<a class="text-slate-500 hover:text-blue-400 transition-colors font-['Space_Grotesk'] text-sm" href="solutions.html">Resources</a>
+<a class="text-slate-500 hover:text-blue-400 transition-colors font-['Space_Grotesk'] text-sm" href="index.html#case-studies">Case Studies</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

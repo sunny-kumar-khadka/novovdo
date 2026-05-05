@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Solutions | novovdo - Illuminated Intelligence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;family=DM+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #0A0C10;
+            color: #e1e2e9;
+        }
+        .glass-card {
+            background: rgba(20, 23, 28, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-card:hover {
+            border-color: rgba(190, 194, 255, 0.2);
+            box-shadow: 0 0 20px rgba(190, 194, 255, 0.05);
+        }
+        .neon-line {
+            box-shadow: 0 0 8px currentColor;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed-dim": "#bec2ff",
+                      "surface-container-highest": "#32353a",
+                      "secondary": "#e5b5ff",
+                      "on-surface-variant": "#c5c5d9",
+                      "tertiary-fixed-dim": "#00dbe9",
+                      "on-secondary-fixed": "#30004b",
+                      "inverse-on-surface": "#2e3036",
+                      "on-error": "#690005",
+                      "on-primary-container": "#dedeff",
+                      "surface-container": "#1d2025",
+                      "surface-dim": "#101418",
+                      "tertiary-fixed": "#7df4ff",
+                      "error": "#ffb4ab",
+                      "inverse-surface": "#e1e2e9",
+                      "surface-variant": "#32353a",
+                      "on-tertiary": "#00363a",
+                      "primary": "#bec2ff",
+                      "surface": "#101418",
+                      "tertiary-container": "#006f76",
+                      "tertiary": "#00dbe9",
+                      "surface-container-lowest": "#0b0e13",
+                      "surface-tint": "#bec2ff",
+                      "on-secondary-container": "#f7e1ff",
+                      "surface-bright": "#36393f",
+                      "on-surface": "#e1e2e9",
+                      "primary-container": "#3a47ff",
+                      "secondary-fixed": "#f4d9ff",
+                      "on-secondary-fixed-variant": "#7000a8",
+                      "on-primary-fixed-variant": "#0716e5",
+                      "on-tertiary-fixed-variant": "#004f54",
+                      "outline": "#8f8fa3",
+                      "on-background": "#e1e2e9",
+                      "surface-container-low": "#191c21",
+                      "on-tertiary-fixed": "#002022",
+                      "secondary-container": "#a100f0",
+                      "inverse-primary": "#3340fa",
+                      "on-secondary": "#4e0078",
+                      "secondary-fixed-dim": "#e5b5ff",
+                      "on-primary-fixed": "#00036b",
+                      "on-primary": "#0008a8",
+                      "background": "#101418",
+                      "surface-container-high": "#272a2f",
+                      "primary-fixed": "#e0e0ff",
+                      "on-tertiary-container": "#75f4ff",
+                      "error-container": "#93000a",
+                      "outline-variant": "#454556",
+                      "on-error-container": "#ffdad6"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "lg": "1.5rem",
+                      "3xl": "4rem",
+                      "2xl": "3rem",
+                      "sm": "0.5rem",
+                      "xl": "2rem",
+                      "margin": "2rem",
+                      "gutter": "1.5rem",
+                      "xs": "0.25rem",
+                      "md": "1rem"
+              },
+              "fontFamily": {
+                      "headline-md": ["Space Grotesk"],
+                      "label-md": ["Inter"],
+                      "headline-lg": ["Space Grotesk"],
+                      "body-lg": ["Inter"],
+                      "mono-label": ["DM Mono"],
+                      "body-md": ["Inter"],
+                      "headline-xl": ["Space Grotesk"],
+                      "body-sm": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "label-md": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                      "mono-label": ["13px", {"lineHeight": "1", "letterSpacing": "0", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                      "headline-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "0.02em", "fontWeight": "700"}],
+                      "body-sm": ["14px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="bg-slate-950/80 backdrop-blur-md font-['Space_Grotesk'] tracking-tight fixed top-0 w-full z-50 border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+<div class="flex justify-between items-center h-20 px-8 max-w-[1600px] mx-auto">
+<div class="flex items-center gap-8">
+<a class="text-2xl font-bold text-white tracking-tighter font-headline-md bg-transparent" href="index.html"><img alt="novovdo logo" class="h-8 w-auto object-contain bg-transparent" src="asset/images/novovdo_logo.svg"/></a>
+<nav class="hidden md:flex gap-6 font-headline-md tracking-tight">
+<a class="text-slate-400 hover:text-white transition-colors" href="index.html">Home</a>
+<a class="text-blue-500 border-b-2 border-blue-500 pb-1" href="solutions.html">Solutions</a>
+<a class="text-slate-400 hover:text-white transition-colors" href="advertiser.html">Advertisers</a>
+<a class="text-slate-400 hover:text-white transition-colors" href="publisher.html">Publishers</a>
+<a class="text-slate-400 hover:text-white transition-colors" href="contact.html">Contact</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-6 py-2 text-slate-400 hover:text-white transition-all duration-300 font-label-md">Login</button>
+<button class="px-6 py-2 bg-primary-container text-on-primary-container rounded-md active:scale-95 duration-200 font-label-md">Get Started</button>
+</div>
+</div>
+</header>
+<main class="pt-32">
+<!-- Hero Section -->
+<section class="max-w-[1600px] mx-auto px-8 mb-3xl">
+<div class="grid gap-2xl items-center">
+<div>
+<span class="text-primary font-mono-label mb-md block">CORE CAPABILITIES</span>
+<h1 class="font-headline-xl text-headline-xl text-white mb-xl leading-tight">Illuminated <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-tertiary">Intelligence</span> for AdTech</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-2xl max-w-3xl">Deploy enterprise-grade AI that transforms high-frequency data into actionable competitive advantages. Optimization at the speed of light.</p>
+<div class="flex gap-md">
+<div class="flex items-center gap-sm">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse shadow-[0_0_8px_#00dbe9]"></span>
+<span class="font-label-md text-label-md text-tertiary">SYSTEM ACTIVE</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-body-md">speed</span>
+<span class="font-label-md text-label-md text-on-surface-variant">0.4ms LATENCY</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid: Targeting, Creative, Delivery -->
+<section class="max-w-[1600px] mx-auto px-8 py-3xl">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- AI Targeting -->
+<div class="md:col-span-8 glass-card p-xl rounded-xl flex flex-col justify-between group">
+<div>
+<div class="flex justify-between items-start mb-xl">
+<div>
+<span class="material-symbols-outlined text-primary text-3xl mb-md">target</span>
+<h3 class="font-headline-lg text-headline-lg text-white">AI Targeting</h3>
+</div>
+<span class="font-mono-label text-primary bg-primary/10 px-3 py-1 rounded-full">+42% UPLIFT</span>
+</div>
+<p class="font-body-md text-on-surface-variant max-w-lg mb-xl">Neural audience mapping that predicts user intent before the first click. Our algorithms analyze billions of signals to identify high-value segments with surgical precision.</p>
+</div>
+<div class="h-48 w-full bg-surface-container-lowest rounded-lg border border-white/5 relative overflow-hidden p-md">
+<div class="flex items-end justify-between h-full gap-2">
+<div class="w-full bg-primary/20 rounded-t h-[30%] group-hover:h-[60%] transition-all duration-700"></div>
+<div class="w-full bg-primary/40 rounded-t h-[45%] group-hover:h-[75%] transition-all duration-700"></div>
+<div class="w-full bg-primary/30 rounded-t h-[60%] group-hover:h-[40%] transition-all duration-700"></div>
+<div class="w-full bg-primary/60 rounded-t h-[80%] group-hover:h-[90%] transition-all duration-700"></div>
+<div class="w-full bg-primary/20 rounded-t h-[50%] group-hover:h-[55%] transition-all duration-700"></div>
+<div class="w-full bg-tertiary/80 rounded-t h-[95%] group-hover:h-[100%] transition-all duration-700 neon-line"></div>
+</div>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<span class="font-label-md text-label-md text-white/50">PREDICTIVE AUDIENCE GROWTH</span>
+</div>
+</div>
+</div>
+<!-- Dynamic Creative -->
+<div class="md:col-span-4 glass-card p-xl rounded-xl group">
+<span class="material-symbols-outlined text-secondary text-3xl mb-md">auto_awesome</span>
+<h3 class="font-headline-lg text-headline-lg text-white mb-md">Dynamic Creative</h3>
+<p class="font-body-md text-on-surface-variant mb-xl">Real-time assembly of ad units based on user context, device, and behavioral history.</p>
+<div class="space-y-sm">
+<div class="flex justify-between text-body-sm font-mono-label">
+<span class="text-on-surface-variant">Generation Speed</span>
+<span class="text-secondary">12ms</span>
+</div>
+<div class="w-full h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[92%]"></div>
+</div>
+<div class="flex justify-between text-body-sm font-mono-label mt-md">
+<span class="text-on-surface-variant">CTR Variance</span>
+<span class="text-secondary">+18.4%</span>
+</div>
+<div class="w-full h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[78%]"></div>
+</div>
+</div>
+</div>
+<!-- Precision Delivery -->
+<div class="md:col-span-5 glass-card p-xl rounded-xl flex flex-col">
+<span class="material-symbols-outlined text-tertiary text-3xl mb-md">bolt</span>
+<h3 class="font-headline-lg text-headline-lg text-white mb-md">Precision Delivery</h3>
+<p class="font-body-md text-on-surface-variant mb-xl">Low-latency bidding infrastructure that secures the highest ROI impressions across global exchanges.</p>
+<div class="mt-auto grid grid-cols-2 gap-md">
+<div class="bg-surface-container-high p-md rounded-lg border border-white/5">
+<span class="text-tertiary font-headline-md block">99.99%</span>
+<span class="text-body-sm text-on-surface-variant">Uptime</span>
+</div>
+<div class="bg-surface-container-high p-md rounded-lg border border-white/5">
+<span class="text-tertiary font-headline-md block">2M+</span>
+<span class="text-body-sm text-on-surface-variant">QPS Cap</span>
+</div>
+</div>
+</div>
+<!-- Data Visualizer -->
+<div class="md:col-span-7 glass-card p-xl rounded-xl relative overflow-hidden">
+<div class="flex items-center justify-between mb-xl">
+<h3 class="font-headline-md text-headline-md text-white">Performance Analytics</h3>
+<div class="flex gap-sm">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span class="w-3 h-3 rounded-full bg-tertiary"></span>
+</div>
+</div>
+<div class="relative h-40 flex items-center justify-center">
+<!-- Abstract Chart Shape -->
+<svg class="w-full h-full overflow-visible" viewbox="0 0 400 100">
+<path class="neon-line" d="M0,80 Q50,90 100,50 T200,40 T300,70 T400,10" fill="none" stroke="#bec2ff" stroke-width="3"></path>
+<path d="M0,90 Q50,85 100,70 T200,60 T300,30 T400,20" fill="none" opacity="0.6" stroke="#00dbe9" stroke-width="2"></path>
+</svg>
+<div class="absolute bottom-0 left-0 w-full flex justify-between font-mono-label text-[10px] text-on-surface-variant/50 uppercase tracking-widest pt-4 border-t border-white/5">
+<span>00:00H</span>
+<span>06:00H</span>
+<span>12:00H</span>
+<span>18:00H</span>
+<span>23:59H</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Deep Dive Section -->
+<section class="max-w-[1600px] mx-auto px-8 py-3xl bg-surface-container-lowest/50">
+<div class="text-center mb-3xl">
+<h2 class="font-headline-lg text-headline-lg text-white mb-md">The Engine of Growth</h2>
+<p class="font-body-md text-on-surface-variant max-w-2xl mx-auto">Our proprietary AI model, VDO-Net, processes trillion-scale datasets to automate complex decisions in milliseconds.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-xl">
+<div class="p-xl border-l border-white/10 hover:border-primary transition-all group">
+<span class="font-mono-label text-primary mb-sm block">01 / DISCOVERY</span>
+<h4 class="font-headline-md text-headline-md text-white mb-md">Semantic Analysis</h4>
+<p class="font-body-sm text-on-surface-variant">Understanding the context of content to ensure brand safety and environmental relevance without cookies.</p>
+</div>
+<div class="p-xl border-l border-white/10 hover:border-secondary transition-all group">
+<span class="font-mono-label text-secondary mb-sm block">02 / OPTIMIZATION</span>
+<h4 class="font-headline-md text-headline-md text-white mb-md">Yield Maximization</h4>
+<p class="font-body-sm text-on-surface-variant">ML-driven bid shading and floor price detection to balance scale with cost-efficiency.</p>
+</div>
+<div class="p-xl border-l border-white/10 hover:border-tertiary transition-all group">
+<span class="font-mono-label text-tertiary mb-sm block">03 / REPORTING</span>
+<h4 class="font-headline-md text-headline-md text-white mb-md">Attribution 2.0</h4>
+<p class="font-body-sm text-on-surface-variant">Multi-touch attribution models that reveal the true impact of every dollar spent across the funnel.</p>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="max-w-[1600px] mx-auto px-8 py-3xl">
+<div class="glass-card rounded-xl p-3xl text-center border-primary/20 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-xl">
+<span class="material-symbols-outlined text-primary/20 text-9xl">flare</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-white mb-xl">Ready to illuminate your campaign performance?</h2>
+<div class="flex flex-col md:flex-row gap-md justify-center">
+<a class="bg-primary-container text-on-primary-container px-xl py-4 rounded-full font-headline-md text-body-md hover:scale-105 transition-transform" href="contact.html">Request Deep Dive Demo</a>
+<a class="border border-white/20 text-white px-xl py-4 rounded-full font-headline-md text-body-md hover:bg-white/5 transition-all" href="index.html#case-studies">View Case Studies</a>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-950 w-full py-12 border-t border-white/5 font-['Space_Grotesk'] text-sm">
+<div class="max-w-[1600px] mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+<div>
+<img alt="novovdo logo" class="h-7 w-auto object-contain mb-md" src="asset/images/novovdo_logo.svg"/>
+<p class="text-slate-500 max-w-sm mb-lg">© 2026 novovdo. Illuminated Intelligence for AdTech. Engineering the future of digital presence through advanced neural networks.</p>
+<div class="flex gap-md">
+<a class="text-slate-500 hover:text-blue-400 transition-colors" href="#">LinkedIn</a>
+<a class="text-slate-500 hover:text-blue-400 transition-colors" href="#">Twitter</a>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-xl">
+<div class="flex flex-col gap-sm">
+<span class="text-white font-medium mb-xs">Product</span>
+<a class="text-slate-500 hover:text-blue-400 transition-colors" href="solutions.html">Resources</a>
+<a class="text-slate-500 hover:text-blue-400 transition-colors" href="index.html#case-studies">Case Studies</a>
+</div>
+<div class="flex flex-col gap-sm">
+<span class="text-white font-medium mb-xs">Company</span>
+<a class="text-slate-500 hover:text-blue-400 transition-colors" href="#">Privacy Policy</a>
+<a class="text-slate-500 hover:text-blue-400 transition-colors" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-sm">
+<span class="text-white font-medium mb-xs">Contact</span>
+<a class="text-slate-500 hover:text-blue-400 transition-colors" href="#">Support</a>
+<a class="text-slate-500 hover:text-blue-400 transition-colors" href="#">Sales</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

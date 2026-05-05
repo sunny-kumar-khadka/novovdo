@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Publisher Suite | novovdo</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;family=DM+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#bec2ff",
+                        "surface-container-highest": "#32353a",
+                        "secondary": "#e5b5ff",
+                        "on-surface-variant": "#c5c5d9",
+                        "tertiary-fixed-dim": "#00dbe9",
+                        "on-secondary-fixed": "#30004b",
+                        "inverse-on-surface": "#2e3036",
+                        "on-error": "#690005",
+                        "on-primary-container": "#dedeff",
+                        "surface-container": "#1d2025",
+                        "surface-dim": "#101418",
+                        "tertiary-fixed": "#7df4ff",
+                        "error": "#ffb4ab",
+                        "inverse-surface": "#e1e2e9",
+                        "surface-variant": "#32353a",
+                        "on-tertiary": "#00363a",
+                        "primary": "#bec2ff",
+                        "surface": "#101418",
+                        "tertiary-container": "#006f76",
+                        "tertiary": "#00dbe9",
+                        "surface-container-lowest": "#0b0e13",
+                        "surface-tint": "#bec2ff",
+                        "on-secondary-container": "#f7e1ff",
+                        "surface-bright": "#36393f",
+                        "on-surface": "#e1e2e9",
+                        "primary-container": "#3a47ff",
+                        "secondary-fixed": "#f4d9ff",
+                        "on-secondary-fixed-variant": "#7000a8",
+                        "on-primary-fixed-variant": "#0716e5",
+                        "on-tertiary-fixed-variant": "#004f54",
+                        "outline": "#8f8fa3",
+                        "on-background": "#e1e2e9",
+                        "surface-container-low": "#191c21",
+                        "on-tertiary-fixed": "#002022",
+                        "secondary-container": "#a100f0",
+                        "inverse-primary": "#3340fa",
+                        "on-secondary": "#4e0078",
+                        "secondary-fixed-dim": "#e5b5ff",
+                        "on-primary-fixed": "#00036b",
+                        "on-primary": "#0008a8",
+                        "background": "#101418",
+                        "surface-container-high": "#272a2f",
+                        "primary-fixed": "#e0e0ff",
+                        "on-tertiary-container": "#75f4ff",
+                        "error-container": "#93000a",
+                        "outline-variant": "#454556",
+                        "on-error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "1.5rem",
+                        "3xl": "4rem",
+                        "2xl": "3rem",
+                        "sm": "0.5rem",
+                        "xl": "2rem",
+                        "margin": "2rem",
+                        "gutter": "1.5rem",
+                        "xs": "0.25rem",
+                        "md": "1rem"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Space Grotesk"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Space Grotesk"],
+                        "body-lg": ["Inter"],
+                        "mono-label": ["DM Mono"],
+                        "body-md": ["Inter"],
+                        "headline-xl": ["Space Grotesk"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "label-md": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                        "mono-label": ["13px", {"lineHeight": "1", "letterSpacing": "0", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                        "headline-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "0.02em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(20, 23, 28, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glow-border-primary:hover {
+            border-color: rgba(190, 194, 255, 0.4);
+            box-shadow: 0 0 20px rgba(190, 194, 255, 0.1);
+        }
+        .neon-line {
+            box-shadow: 0 0 8px rgba(0, 219, 233, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-slate-950/80 backdrop-blur-md border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+<div class="flex justify-between items-center h-20 px-8 max-w-[1600px] mx-auto">
+<div class="flex items-center gap-8">
+<a class="text-2xl font-bold text-white tracking-tighter font-headline-md bg-transparent" href="index.html"><img alt="novovdo logo" class="h-8 w-auto object-contain bg-transparent" src="asset/images/novovdo_logo.svg"/></a>
+<nav class="hidden md:flex gap-6 font-headline-md tracking-tight">
+<a class="text-slate-400 hover:text-white transition-colors" href="index.html">Home</a>
+<a class="text-slate-400 hover:text-white transition-colors" href="solutions.html">Solutions</a>
+<a class="text-slate-400 hover:text-white transition-colors" href="advertiser.html">Advertisers</a>
+<a class="text-blue-500 border-b-2 border-blue-500 pb-1" href="publisher.html">Publishers</a>
+<a class="text-slate-400 hover:text-white transition-colors" href="contact.html">Contact</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-6 py-2 text-slate-400 hover:text-white transition-all duration-300 font-label-md">Login</button>
+<button class="px-6 py-2 bg-primary-container text-on-primary-container rounded-md active:scale-95 duration-200 font-label-md">Get Started</button>
+</div>
+</div>
+</header>
+<main class="pt-32 pb-2xl px-margin max-w-[1600px] mx-auto">
+<!-- Hero Section -->
+<section class="mb-3xl">
+<div class="flex flex-col md:flex-row gap-2xl items-center">
+<div class="w-full md:w-2/3">
+<span class="font-mono-label text-tertiary uppercase tracking-widest mb-md block">Publisher Intelligence Suite</span>
+<h1 class="font-headline-xl text-headline-xl text-on-surface mb-lg">Maximize Yield with <span class="text-primary">AI-Powered</span> Inventory Mastery.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-xl max-w-xl">
+                        A comprehensive monetization engine designed for premium publishers. Deploy real-time floor price optimization and transparent inventory control to reclaim your revenue potential.
+                    </p>
+<div class="flex gap-md">
+<a class="bg-primary-container text-on-primary-container px-xl py-md rounded-lg font-headline-md text-body-md hover:brightness-110 transition-all" href="contact.html">Book Demo</a>
+<a class="border border-outline text-on-surface px-xl py-md rounded-lg font-headline-md text-body-md hover:bg-white/5 transition-all" href="index.html#case-studies">View Case Studies</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid: Key Features -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-3xl">
+<!-- Main Yield Control -->
+<div class="md:col-span-8 glass-card p-xl rounded-xl flex flex-col justify-between min-h-[400px] glow-border-primary group">
+<div>
+<span class="material-symbols-outlined text-tertiary text-3xl mb-md">query_stats</span>
+<h2 class="font-headline-lg text-headline-lg mb-md">Dynamic Yield Management</h2>
+<p class="font-body-md text-on-surface-variant max-w-lg">Our proprietary AI engines analyze billions of data points to set optimal floor prices every millisecond, preventing revenue leakage and maximizing fill rates across all channels.</p>
+</div>
+<div class="mt-xl flex items-end justify-between">
+<div class="space-y-sm">
+<div class="flex items-center gap-sm">
+<div class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></div>
+<span class="font-mono-label text-on-surface-variant">Live Optimization Active</span>
+</div>
+<div class="text-headline-md text-tertiary font-headline-md">+22.4% <span class="text-body-sm font-body-sm text-on-surface-variant font-normal">Avg. Revenue Lift</span></div>
+</div>
+<div class="h-24 flex items-end gap-xs">
+<div class="w-4 bg-tertiary/20 h-1/4 rounded-t-sm transition-all group-hover:h-1/2"></div>
+<div class="w-4 bg-tertiary/40 h-1/2 rounded-t-sm transition-all group-hover:h-3/4"></div>
+<div class="w-4 bg-tertiary/60 h-3/4 rounded-t-sm transition-all group-hover:h-full"></div>
+<div class="w-4 bg-tertiary h-full rounded-t-sm neon-line"></div>
+</div>
+</div>
+</div>
+<!-- Inventory Transparency -->
+<div class="md:col-span-4 glass-card p-xl rounded-xl glow-border-primary">
+<span class="material-symbols-outlined text-primary text-3xl mb-md">grid_view</span>
+<h3 class="font-headline-md text-headline-md mb-md">Inventory Transparency</h3>
+<p class="font-body-sm text-on-surface-variant mb-lg">Full granular visibility into every impression. Audit source quality, placement performance, and bidder behavior with total clarity.</p>
+<div class="space-y-md">
+<div class="p-md bg-surface-container rounded-lg border border-outline-variant/30">
+<div class="flex justify-between mb-sm">
+<span class="text-body-sm font-label-md">Direct Sold</span>
+<span class="text-body-sm text-primary">64%</span>
+</div>
+<div class="w-full bg-white/5 h-1 rounded-full overflow-hidden">
+<div class="bg-primary w-[64%] h-full"></div>
+</div>
+</div>
+<div class="p-md bg-surface-container rounded-lg border border-outline-variant/30">
+<div class="flex justify-between mb-sm">
+<span class="text-body-sm font-label-md">Programmatic</span>
+<span class="text-body-sm text-secondary">36%</span>
+</div>
+<div class="w-full bg-white/5 h-1 rounded-full overflow-hidden">
+<div class="bg-secondary w-[36%] h-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Floor Price Optimization -->
+<div class="md:col-span-4 glass-card p-xl rounded-xl glow-border-primary">
+<span class="material-symbols-outlined text-secondary text-3xl mb-md">bolt</span>
+<h3 class="font-headline-md text-headline-md mb-md">Smart Floors</h3>
+<p class="font-body-sm text-on-surface-variant">Machine learning algorithms that predict the optimal floor for every bid request based on historical bidder patterns and seasonality.</p>
+</div>
+<!-- Global Demand Access -->
+<div class="md:col-span-8 glass-card p-xl rounded-xl flex items-center justify-between glow-border-primary">
+<div class="max-w-md">
+<span class="material-symbols-outlined text-primary-fixed-dim text-3xl mb-md">public</span>
+<h3 class="font-headline-md text-headline-md mb-md">Universal Demand Connectivity</h3>
+<p class="font-body-md text-on-surface-variant">One-click integration with 200+ global DSPs and premium advertisers. Tap into high-CPM global demand instantly.</p>
+</div>
+<div class="hidden lg:flex relative w-48 h-48 items-center justify-center">
+<div class="absolute inset-0 border border-primary/20 rounded-full animate-[spin_10s_linear_infinite]"></div>
+<div class="absolute inset-4 border border-secondary/20 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
+<span class="material-symbols-outlined text-primary text-5xl" data-weight="fill">hub</span>
+</div>
+</div>
+</div>
+<!-- Dashboard Stats Section -->
+<section class="mb-3xl">
+<div class="flex justify-between items-end mb-xl">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Yield Intelligence Performance</h2>
+<p class="font-body-md text-on-surface-variant">Real-time aggregate data across the novovdo ecosystem.</p>
+</div>
+<div class="flex gap-sm">
+<div class="px-md py-xs bg-surface-container-high rounded-full font-mono-label text-tertiary">Real-time</div>
+<div class="px-md py-xs border border-outline-variant rounded-full font-mono-label">Last 24h</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<div class="glass-card p-lg rounded-xl border-l-4 border-l-primary">
+<div class="text-body-sm font-label-md text-on-surface-variant mb-xs">eCPM LIFT</div>
+<div class="text-headline-md font-headline-md text-primary">+18.5%</div>
+</div>
+<div class="glass-card p-lg rounded-xl border-l-4 border-l-tertiary">
+<div class="text-body-sm font-label-md text-on-surface-variant mb-xs">AD FILL RATE</div>
+<div class="text-headline-md font-headline-md text-tertiary">99.2%</div>
+</div>
+<div class="glass-card p-lg rounded-xl border-l-4 border-l-secondary">
+<div class="text-body-sm font-label-md text-on-surface-variant mb-xs">AUCTION LATENCY</div>
+<div class="text-headline-md font-headline-md text-secondary">32ms</div>
+</div>
+<div class="glass-card p-lg rounded-xl border-l-4 border-l-on-surface">
+<div class="text-body-sm font-label-md text-on-surface-variant mb-xs">DATA REQUESTS</div>
+<div class="text-headline-md font-headline-md text-on-surface">4.2B</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-3xl relative overflow-hidden rounded-3xl bg-primary-container/10 border border-primary/20">
+<div class="absolute top-0 right-0 w-96 h-96 bg-primary/10 blur-[120px] -mr-48 -mt-48"></div>
+<div class="absolute bottom-0 left-0 w-96 h-96 bg-tertiary/10 blur-[120px] -ml-48 -mb-48"></div>
+<div class="relative z-10 text-center max-w-2xl mx-auto px-xl">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-lg">Ready to transform your monetization strategy?</h2>
+<p class="font-body-lg text-on-surface-variant mb-xl">Join 500+ premium publishers who have unlocked an average of 15% revenue growth in the first 30 days.</p>
+<div class="flex flex-col sm:flex-row gap-md justify-center">
+<button class="bg-primary text-on-primary px-2xl py-md rounded-lg font-headline-md text-body-md hover:scale-105 transition-transform">Request Access</button>
+<button class="bg-surface-container text-on-surface px-2xl py-md rounded-lg font-headline-md text-body-md border border-outline-variant hover:bg-surface-container-high transition-colors">Talk to a Yield Specialist</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 bg-slate-950 border-t border-white/5 font-['Space_Grotesk'] text-sm">
+<div class="max-w-[1600px] mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+<div>
+<img alt="novovdo logo" class="h-7 w-auto object-contain mb-md" src="asset/images/novovdo_logo.svg"/>
+<p class="text-slate-500 max-w-xs">© 2026 novovdo. Illuminated Intelligence for AdTech. Engineering the future of publisher monetization.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-lg">
+<div class="flex flex-col gap-sm">
+<span class="text-white font-medium">Resources</span>
+<a class="text-slate-500 hover:text-blue-400 transition-colors" href="#">Privacy Policy</a>
+<a class="text-slate-500 hover:text-blue-400 transition-colors" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-sm">
+<span class="text-white font-medium">Platform</span>
+<a class="text-slate-500 hover:text-blue-400 transition-colors" href="solutions.html">Resources</a>
+<a class="text-slate-500 hover:text-blue-400 transition-colors" href="index.html#case-studies">Case Studies</a>
+</div>
+<div class="flex flex-col gap-sm">
+<span class="text-white font-medium">Connect</span>
+<a class="text-slate-500 hover:text-blue-400 transition-colors" href="#">LinkedIn</a>
+<a class="text-slate-500 hover:text-blue-400 transition-colors" href="#">Twitter</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
